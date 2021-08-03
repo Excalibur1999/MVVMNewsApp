@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.room.Room
 import com.androiddevs.mvvmnewsapp.dao.ArticleDao
 import com.androiddevs.mvvmnewsapp.model.ArticleDatabase
+import com.androiddevs.mvvmnewsapp.repository.NewsRepository
 import com.androiddevs.mvvmnewsapp.util.Constants
 import com.example.weatherapp.api.ApiService
 import dagger.Module
@@ -46,6 +47,13 @@ object AppModule {
         return Room.databaseBuilder(appContext, ArticleDatabase::class.java, "article_db.db")
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideNewsRepository(dao: ArticleDao, api: ApiService): NewsRepository {
+        return NewsRepository(dao, api)
+    }
+
 
     @Provides
     fun provideArticleDao(database: ArticleDatabase): ArticleDao {
