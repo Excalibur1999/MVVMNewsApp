@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
     lateinit var binding: FragmentBreakingNewsBinding
     val viewModel: NewsViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
