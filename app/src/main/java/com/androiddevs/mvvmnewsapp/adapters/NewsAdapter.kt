@@ -19,7 +19,7 @@ class NewsAdapter : ListAdapter<Article, NewsAdapter.ArticleViewHolder>(ArticleC
         fun bind(article: Article) {
 
             binding.apply {
-                Glide.with(itemView).load(article.url).into(ivArticleImage)
+                Glide.with(itemView).load(article.urlToImage).into(ivArticleImage)
                 tvSource.text = article.source.name
                 tvTitle.text = article.title
                 tvDescription.text = article.description

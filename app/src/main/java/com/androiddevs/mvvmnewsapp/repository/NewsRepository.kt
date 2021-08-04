@@ -1,12 +1,20 @@
 package com.androiddevs.mvvmnewsapp.repository
 
-import com.androiddevs.mvvmnewsapp.dao.ArticleDao
+import com.androiddevs.mvvmnewsapp.model.ArticleDatabase
 import com.example.weatherapp.api.ApiService
 import javax.inject.Inject
 
 
 class NewsRepository @Inject constructor(
-    val dao: ArticleDao,
-    val api: ApiService
+    db: ArticleDatabase,
+    private val api: ApiService
 ) {
+    val dao = db.getArticleDao()
+
+    suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
+        api.getBreakingNews(countryCode, pageNumber)
+
+    suspend fun searchNews(searchQuery: String, pageNumber: Int) =
+        api.searchForNews(searchQuery, pageNumber)
+
 }
